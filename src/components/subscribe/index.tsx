@@ -15,7 +15,9 @@ function Subscribe() {
 			</div>
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-8">
 				{subs.map((sub) => (
-					<SubscriptionCard key={sub.id} data={sub} />
+					<div>
+						<SubscriptionCard key={sub.id} data={sub} />
+					</div>
 				))}
 			</div>
 		</Element>

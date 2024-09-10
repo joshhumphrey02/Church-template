@@ -5,7 +5,6 @@ import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { useEffect, useRef } from 'react';
 
-// Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 interface LessonProps {
@@ -19,44 +18,45 @@ interface LessonProps {
 
 function Lesson({ data }: LessonProps) {
 	const imageRef = useRef<HTMLImageElement>(null);
+	const divRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (imageRef.current) {
-			if (data.id % 2 == 0) {
-				gsap.fromTo(
-					imageRef.current,
-					{ opacity: 0.5, x: -400 },
-					{
-						opacity: 1,
-						x: 0,
-						duration: 2,
-						scrollTrigger: {
-							trigger: imageRef.current,
-							start: 'top bottom',
-							end: 'bottom top',
-							scrub: true,
-						},
-					}
-				);
-			} else {
-				gsap.fromTo(
-					imageRef.current,
-					{ opacity: 0, x: 500 },
-					{
-						opacity: 1,
-						x: 0,
-						duration: 2,
-						scrollTrigger: {
-							trigger: imageRef.current,
-							start: 'top bottom',
-							end: 'bottom top',
-							scrub: true,
-						},
-					}
-				);
+		if (!imageRef?.current || !divRef?.current) return;
+		gsap.fromTo(
+			imageRef.current,
+			data.id % 2 === 0
+				? { opacity: 0, x: '-100%' }
+				: { opacity: 0, x: '100%' },
+			{
+				opacity: 1,
+				x: 0,
+				duration: 8,
+				scrollTrigger: {
+					trigger: imageRef.current,
+					start: 'top bottom',
+					end: 'bottom center',
+					scrub: true,
+				},
 			}
-		}
-	}, []);
+		);
+		gsap.fromTo(
+			divRef.current,
+			data.id % 2 !== 0
+				? { opacity: 0, x: '-100%' }
+				: { opacity: 0, x: '100%' },
+			{
+				opacity: 1,
+				x: 0,
+				duration: 8,
+				scrollTrigger: {
+					trigger: divRef.current,
+					start: 'top bottom',
+					end: 'bottom center',
+					scrub: true,
+				},
+			}
+		);
+	}, [data.id]);
 	return (
 		<div
 			className={cn(
@@ -65,7 +65,7 @@ function Lesson({ data }: LessonProps) {
 					? 'bg-[#f8f1ee]'
 					: 'bg-white  flex-col-reverse md:flex-row-reverse'
 			)}>
-			<div className="flex-1 px-2 space-y-2">
+			<div ref={divRef} className="flex-1 px-2 space-y-2">
 				<h2 className="text-xl md:text-2xl relative">{data.title}</h2>
 				<p className="text-sm">{data.description}</p>
 				<Button

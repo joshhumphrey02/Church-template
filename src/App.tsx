@@ -6,7 +6,7 @@ import Footer from './components/footer';
 
 function App() {
 	return (
-		<main className="grid min-h-screen">
+		<main className="grid min-h-screen overflow-x-hidden">
 			<Hero />
 			<Lessons />
 			<Subscribe />

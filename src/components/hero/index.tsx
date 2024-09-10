@@ -1,103 +1,86 @@
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
 import Header from '../header';
 import { Button } from '../ui/button';
-import { useEffect, useState } from 'react';
-import { gsap } from 'gsap';
 import { Element } from 'react-scroll';
 
 function Hero() {
-	const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
-	const [isVideo, setIsVideo] = useState(false);
+	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+	const images = ['/images/img2.jpg', '/images/img3.jpeg', '/images/img4.jpeg'];
+	const imageRefs = useRef<HTMLDivElement[]>([]);
+	const textRef = useRef<HTMLDivElement>(null);
+	const hasAnimatedText = useRef(false);
 
 	useEffect(() => {
-		const media = [
-			'/images/img2.jpg',
-			'/images/img3.jpeg',
-			'/images/img4.jpeg',
-		];
-		const directions = ['right', 'left', 'top', 'bottom'] as const;
-		let timeline = gsap.timeline({
-			onComplete: () => updateMedia(),
-		});
-
-		const updateMedia = () => {
-			const nextIndex = (currentMediaIndex + 1) % media.length;
-			const selectedMedia = media[nextIndex];
-			const currentDirection = directions[nextIndex % directions.length];
-
-			let fromVars = {};
-			if (currentDirection === 'right') {
-				fromVars = { x: '100%' };
-			} else if (currentDirection === 'left') {
-				fromVars = { x: '-100%' };
-			} else if (currentDirection === 'top') {
-				fromVars = { y: '-100%' };
-			} else if (currentDirection === 'bottom') {
-				fromVars = { y: '100%' };
-			}
-			timeline = gsap.timeline({
-				onComplete: () => updateMedia(),
-			});
-			timeline.fromTo('.hero-background', fromVars, {
-				x: '0%',
-				y: '0%',
-				duration: 15,
-				ease: 'power3.out',
+		if (!hasAnimatedText.current) {
+			gsap.fromTo(
+				textRef.current,
+				{
+					opacity: 0,
+					y: 100,
+				},
+				{ y: 0, opacity: 1, duration: 5, ease: 'power3.out' }
+			);
+			hasAnimatedText.current = true;
+		}
+		const animateImages = () => {
+			const currentImageRef = imageRefs.current[currentImageIndex];
+			const nextImageIndex = (currentImageIndex + 1) % images.length;
+			const nextImageRef = imageRefs.current[nextImageIndex];
+			gsap.to(currentImageRef, {
+				duration: 4,
+				scale: 0.5,
+				opacity: 0,
+				transformOrigin: 'center',
+				ease: 'power3.inOut',
 				onComplete: () => {
-					setCurrentMediaIndex(nextIndex);
-					setIsVideo(selectedMedia.includes('.mp4'));
+					gsap.set(currentImageRef, { display: 'none' });
 				},
 			});
+			gsap.set(nextImageRef, {
+				display: 'block',
+				scale: 0.5,
+				opacity: 0,
+				transformOrigin: 'center',
+			});
+			gsap.to(nextImageRef, {
+				duration: 4,
+				scale: 1,
+				opacity: 1,
+				ease: 'power3.inOut',
+			});
 
-			timeline.to('.hero-background', { duration: 20 });
+			setCurrentImageIndex(nextImageIndex);
 		};
+		const interval = setInterval(() => {
+			animateImages();
+		}, 8000);
 
-		updateMedia();
-		return () => {
-			timeline.kill();
-		};
-	}, [currentMediaIndex]);
+		return () => clearInterval(interval);
+	}, [currentImageIndex, images.length]);
+
 	return (
-		<Element
-			name="about"
-			className="relative flex flex-col h-screen bg-gray-200 px-4  md:px-32">
-			<div
-				style={{
-					borderImage:
-						'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)) fill 1',
-				}}
-				className="absolute top-0 left-0 w-full h-full overflow-hidden">
-				<div className="hero-background w-full h-full">
-					{!isVideo ? (
-						<div
-							className="w-full h-full bg-cover bg-center  transition-opacity duration-1000"
-							style={{
-								borderImage:
-									'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)) fill 1',
-								backgroundImage: `url('${
-									currentMediaIndex < 2
-										? `/images/img${currentMediaIndex + 1}.jpg`
-										: '/images/img4.jpeg'
-								}')`,
-							}}></div>
-					) : (
-						<video
-							className="w-full h-full object-cover"
-							style={{
-								borderImage:
-									'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)) fill 1',
-							}}
-							src={'/images/vid.mp4'}
-							autoPlay
-							muted
-							loop
-						/>
-					)}
-				</div>
+		<Element name="about" className="relative flex flex-col h-screen bg-black">
+			<div className="absolute w-full h-full top-0 left-0">
+				{images.map((image, index) => (
+					<div
+						key={index}
+						ref={(el) => (imageRefs.current[index] = el!)}
+						style={{
+							backgroundImage: `url('${image}')`,
+							backgroundPosition: 'center',
+							backgroundSize: 'cover',
+							display: index === 0 ? 'block' : 'none',
+						}}
+						className="absolute w-full h-full"
+					/>
+				))}
 			</div>
-
-			<div className="relative z-10 flex-1 flex flex-col justify-center items-center text-white space-y-6">
+			<div
+				ref={textRef}
+				className="relative z-10 flex-1 px-4 md:px-32 flex flex-col justify-center items-center text-white space-y-6">
 				<Header />
-				<div className="flex-1 flex flex-col justify-center items-center text-white space-y-4 md:space-y-6">
+				<div className="flex-1 flex flex-col justify-center items-center space-y-4 md:space-y-6">
 					<h1 className="text-2xl md:text-5xl md:leading-[4rem]">
 						Where Godly Minds Converge <br /> & Kingdom Leader Emerge
 					</h1>
