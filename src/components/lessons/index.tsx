@@ -27,7 +27,7 @@ function Lessons() {
 							borderImage:
 								'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)) fill 1',
 						}}
-						src={'/src/assets/images/img3.jpeg'}
+						src={'/images/img3.jpeg'}
 					/>
 				</div>
 				<div className="flex flex-col gap-y-3 w-full md:w-96 bg-white px-8 py-6 rounded-lg">
@@ -42,7 +42,7 @@ function Lessons() {
 					<div className="w-full h-16">
 						<img
 							className="w-full h-full object-cover"
-							src="/src/assets/images/music.jpeg"
+							src="/images/music.jpeg"
 							alt="music wave"
 						/>
 					</div>
@@ -57,14 +57,14 @@ export default Lessons;
 const lessons = [
 	{
 		id: 1,
-		image: '/src/assets/images/img1.jpg',
+		image: '/images/img1.jpg',
 		title: 'Teaching Salvation As Way of Life',
 		description:
 			'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero vitae accusamus repudiandae vel obcaecati velit suscipit sequi porro, sint debitis inventore error neque sed tempore, ullam quod quia dolor esse.',
 	},
 	{
 		id: 2,
-		image: '/src/assets/images/img2.jpg',
+		image: '/images/img2.jpg',
 		title:
 			'An International Streaming Platform Dedicated to Developing Global Leaders',
 		description:
@@ -72,14 +72,14 @@ const lessons = [
 	},
 	{
 		id: 3,
-		image: '/src/assets/images/img1.jpg',
+		image: '/images/img1.jpg',
 		title: 'Teaching Salvation As Way of Life',
 		description:
 			'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero vitae accusamus repudiandae vel obcaecati velit suscipit sequi porro, sint debitis inventore error neque sed tempore, ullam quod quia dolor esse.',
 	},
 	{
 		id: 4,
-		image: '/src/assets/images/img2.jpg',
+		image: '/images/img2.jpg',
 		title:
 			'An International Streaming Platform Dedicated to Developing Global Leaders',
 		description:

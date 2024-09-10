@@ -10,11 +10,11 @@ function Hero() {
 
 	useEffect(() => {
 		const media = [
-			'/src/assets/images/img1.jpg',
-			'/src/assets/images/img2.jpg',
-			'/src/assets/images/vid.mp4',
-			'/src/assets/images/img3.jpeg',
-			'/src/assets/images/img4.jpeg',
+			'/images/img1.jpg',
+			'/images/img2.jpg',
+			'/images/vid.mp4',
+			'/images/img3.jpeg',
+			'/images/img4.jpeg',
 		];
 		const directions = ['right', 'left', 'top', 'bottom'] as const;
 		let timeline = gsap.timeline({
@@ -77,8 +77,8 @@ function Hero() {
 									'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)) fill 1',
 								backgroundImage: `url('${
 									currentMediaIndex < 2
-										? `/src/assets/images/img${currentMediaIndex + 1}.jpg`
-										: '/src/assets/images/img4.jpeg'
+										? `/images/img${currentMediaIndex + 1}.jpg`
+										: '/images/img4.jpeg'
 								}')`,
 							}}></div>
 					) : (
@@ -88,7 +88,7 @@ function Hero() {
 								borderImage:
 									'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)) fill 1',
 							}}
-							src={'/src/assets/images/vid.mp4'}
+							src={'/images/vid.mp4'}
 							autoPlay
 							muted
 							loop
