@@ -57,7 +57,7 @@ export default Lessons;
 const lessons = [
 	{
 		id: 1,
-		image: '/images/img1.jpg',
+		image: '/images/img3.jpeg',
 		title: 'Teaching Salvation As Way of Life',
 		description:
 			'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero vitae accusamus repudiandae vel obcaecati velit suscipit sequi porro, sint debitis inventore error neque sed tempore, ullam quod quia dolor esse.',
@@ -72,7 +72,7 @@ const lessons = [
 	},
 	{
 		id: 3,
-		image: '/images/img1.jpg',
+		image: '/images/img4.jpeg',
 		title: 'Teaching Salvation As Way of Life',
 		description:
 			'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero vitae accusamus repudiandae vel obcaecati velit suscipit sequi porro, sint debitis inventore error neque sed tempore, ullam quod quia dolor esse.',

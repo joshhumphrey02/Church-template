@@ -10,9 +10,7 @@ function Hero() {
 
 	useEffect(() => {
 		const media = [
-			'/images/img1.jpg',
 			'/images/img2.jpg',
-			'/images/vid.mp4',
 			'/images/img3.jpeg',
 			'/images/img4.jpeg',
 		];
