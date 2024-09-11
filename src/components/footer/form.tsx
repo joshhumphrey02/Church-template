@@ -3,7 +3,7 @@ import { Input } from '../ui/input';
 
 function FooterForm() {
 	return (
-		<form>
+		<form onSubmit={(e) => e.preventDefault()}>
 			<div className="bg-white text-black w-full md:w-1/2 px-3 items-center mx-auto border-[1rem] py-2 rounded-md border-[#2b0a0a]/60 flex gap-x-3">
 				<Input
 					type="email"

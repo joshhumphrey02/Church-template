@@ -23,7 +23,7 @@ const SubscriptionCard = ({ data }: SubscriptionCardProps) => {
 		if (localRef.current) {
 			gsap.fromTo(
 				localRef.current,
-				{ scale: 0.5, opacity: 0 },
+				{ scale: 0.2, opacity: 0 },
 				{
 					scale: 1,
 					opacity: 1,

@@ -71,6 +71,8 @@ function Hero() {
 							backgroundPosition: 'center',
 							backgroundSize: 'cover',
 							display: index === 0 ? 'block' : 'none',
+							borderImage:
+								'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)) fill 1',
 						}}
 						className="absolute w-full h-full"
 					/>

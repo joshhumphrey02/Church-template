@@ -1,12 +1,8 @@
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
-import { Link, animateScroll as scroll } from 'react-scroll';
+import { Link } from 'react-scroll';
 
 function Header() {
-	const options = {
-		duration: 3000,
-		smooth: 'easeInOutQuad',
-	};
 	return (
 		<div className="py-4 w-full">
 			<div className="flex space-x-6 justify-between items-center text-white">
@@ -48,12 +44,6 @@ function Header() {
 					</Button>
 				</ScrollLink>
 			</div>
-			<Button
-				onClick={() => scroll.scrollToTop(options)}
-				variant={'ghost'}
-				className="rounded-full bg-[#48160c] text-white p-1 px-2.5 fixed bottom-6 right-6">
-				<ChevronUp className="w-5 h-5" strokeWidth={3} />
-			</Button>
 		</div>
 	);
 }

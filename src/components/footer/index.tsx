@@ -4,7 +4,7 @@ import FooterForm from './form';
 
 function Footer() {
 	const backgroundImageProperties = {
-		backgroundImage: `url('/images/img1.jpg')`,
+		backgroundImage: `url('/images/img2.jpg')`,
 		backgroundSize: 'cover',
 		backgroundPosition: 'bottom',
 		backgroundRepeat: 'no-repeat',
