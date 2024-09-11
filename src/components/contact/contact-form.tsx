@@ -2,40 +2,30 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
 function ContactForm() {
 	const formRef = useRef<HTMLFormElement>(null);
-	const [isScaled, setIsScaled] = useState(false);
 	useEffect(() => {
 		const form = formRef.current;
-		const inputs = form?.querySelectorAll('input, textarea');
-
-		inputs?.forEach((input) => {
-			input.addEventListener('focus', () => {
-				if (!isScaled) {
-					gsap.to(form, { scale: 1.3, duration: 2 });
-					setIsScaled(true);
+		if (form) {
+			gsap.fromTo(
+				form,
+				{ scale: 0.4 },
+				{
+					scale: 1,
+					duration: 5,
+					ease: 'power1.out',
+					scrollTrigger: {
+						trigger: form,
+						start: 'top bottom',
+						end: 'bottom center',
+						scrub: true,
+					},
 				}
-			});
-
-			input.addEventListener('blur', () => {
-				if (
-					!Array.from(inputs).some((input) => document.activeElement === input)
-				) {
-					gsap.to(form, { scale: 1, duration: 2 });
-					setIsScaled(false);
-				}
-			});
-		});
-
-		return () => {
-			inputs?.forEach((input) => {
-				input.removeEventListener('focus', () => {});
-				input.removeEventListener('blur', () => {});
-			});
-		};
+			);
+		}
 	}, []);
 	return (
 		<div>
