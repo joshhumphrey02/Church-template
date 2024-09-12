@@ -5,7 +5,7 @@ function Contact() {
 	return (
 		<Element
 			name="contact"
-			className="md:h-[80dvh] px-4 md:px-32 space-y-8 bg-[#f8f1ee] py-10">
+			className="md:h-[100dvh] px-4 md:px-32 space-y-8 bg-[#f8f1ee] py-10">
 			<div className=" flex flex-col justify-center items-center">
 				<h1 className="after-line text-2xl mb-4">Contact Us</h1>
 				<p className="text-center w-full md:w-1/2">
