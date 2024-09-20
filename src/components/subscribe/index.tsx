@@ -35,7 +35,7 @@ const subs = [
 		features: [
 			"Stream The Humphrey's Teaching Catalog",
 			'Access Lessons Exclusive to Faith',
-			'15$ Paid Monthly',
+			'$15 Paid Monthly',
 		],
 		desc: "Access to all of Humphrey's teachings and resources for one month",
 	},
@@ -47,7 +47,7 @@ const subs = [
 		features: [
 			"Stream The Humphrey's Teaching Catalog",
 			'Access Lessons Exclusive to Faith',
-			'35$ Paid Qurterly',
+			'$35 Paid Qurterly',
 		],
 		desc: "Access to all of Humphrey's teachings and resources for one year",
 	},
@@ -59,7 +59,7 @@ const subs = [
 		features: [
 			"Stream The Humphrey's Teaching Catalog",
 			'Access Lessons Exclusive to Faith',
-			'125$ Paid Yeraly',
+			'$125 Paid Yeraly',
 		],
 		desc: "Unlimited access to all of Humphrey's teachings and resources for life",
 	},
